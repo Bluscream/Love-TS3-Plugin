@@ -2,11 +2,12 @@
  * TeamSpeak 3 Love Plugin - modified demo plugin
  *
  * The original parts of the demo plugin are
- * Copyright (c) 2008-2014 TeamSpeak Systems GmbH
+ * Copyright (c) 2008-2017 TeamSpeak Systems GmbH
  *
  * The modified parts are
  * Copyright (C) 2011 Christian Goltz
  * Copyright (C) 2011-2014 Stefan Seering
+ * Copyright (C) 2017 saibotu
  *
  * This file is part of Teamspeak 3 Love Plugin.
  */
@@ -146,6 +147,9 @@ PLUGINS_EXPORTDLL void ts3plugin_onMenuItemEvent(uint64 serverConnectionHandlerI
 PLUGINS_EXPORTDLL void ts3plugin_onHotkeyEvent(const char* keyword);
 PLUGINS_EXPORTDLL void ts3plugin_onHotkeyRecordedEvent(const char* keyword, const char* key);
 PLUGINS_EXPORTDLL void ts3plugin_onClientDisplayNameChanged(uint64 serverConnectionHandlerID, anyID clientID, const char* displayName, const char* uniqueClientIdentifier);
+PLUGINS_EXPORTDLL const char* ts3plugin_keyDeviceName(const char* keyIdentifier);
+PLUGINS_EXPORTDLL const char* ts3plugin_displayKeyText(const char* keyIdentifier);
+PLUGINS_EXPORTDLL const char* ts3plugin_keyPrefix();
 
 #ifdef __cplusplus
 }
