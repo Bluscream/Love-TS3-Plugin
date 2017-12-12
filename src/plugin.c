@@ -387,25 +387,22 @@ const char* ts3plugin_infoTitle() {
  * "data" to NULL to have the client ignore the info data.
  */
 void ts3plugin_infoData(uint64 serverConnectionHandlerID, uint64 id, enum PluginItemType type, char** data) {
-	*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));  /* Must be allocated in the plugin! */
 	bool love;
+	*data = NULL;
 
 	switch(type) {
-		case PLUGIN_SERVER:
-			data = NULL;  /* Ignore */
-			return;
 		case PLUGIN_CHANNEL:
 			love = is_channel_lovely(serverConnectionHandlerID, id);
+
+			*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));
 			snprintf(*data, INFODATA_BUFSIZE, "%sovely Channel (You %s automatically follow followed users into this Channel.)", love ? "L" : "Unl", love ? "will" : "won't");
 			break;
 		case PLUGIN_CLIENT:
 			love = get_loved_user(serverConnectionHandlerID) == id;
+
+			*data = (char*)malloc(INFODATA_BUFSIZE * sizeof(char));
 			snprintf(*data, INFODATA_BUFSIZE, "%s (You %s automatically follow this User.)", love ? "Loved one" : "Neutral", love ? "will" : "won't");
 			break;
-		default:
-			printf("Invalid item type: %d\n", type);
-			data = NULL;  /* Ignore */
-			return;
 	}
 }
 
